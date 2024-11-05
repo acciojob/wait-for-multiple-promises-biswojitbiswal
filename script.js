@@ -1,4 +1,3 @@
-//your JS code here. If required.
 // Function to create a promise that resolves after a random time between 1 and 3 seconds
 function createRandomPromise(index) {
     return new Promise((resolve) => {
@@ -10,6 +9,7 @@ function createRandomPromise(index) {
 // Add initial loading row
 const outputTable = document.getElementById("output");
 const loadingRow = document.createElement("tr");
+loadingRow.id = "loading"; // Set ID for Cypress to find
 loadingRow.innerHTML = `<td colspan="2">Loading...</td>`;
 outputTable.appendChild(loadingRow);
 
@@ -32,15 +32,12 @@ Promise.all(promises).then((results) => {
         outputTable.appendChild(row);
     });
 
-    // Calculate the total time and add it as the last row
+    // Calculate the total time taken for all promises
     const totalTime = results.reduce((total, result) => total + parseFloat(result.time), 0).toFixed(3);
     const totalRow = document.createElement("tr");
     totalRow.innerHTML = `<td>Total</td><td>${totalTime} seconds</td>`;
     outputTable.appendChild(totalRow);
 
     // Remove loading row if it still exists
-    const loadingRow = document.querySelector('tr#loading');
-    if (loadingRow) {
-        loadingRow.remove();
-    }
+    loadingRow.remove(); // This ensures the loading row is removed after completion
 });
