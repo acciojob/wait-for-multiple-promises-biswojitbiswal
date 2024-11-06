@@ -22,8 +22,8 @@ const promises = [
 
 // Use Promise.all to wait for all promises to resolve
 Promise.all(promises).then((results) => {
-    // Clear the output table, keeping only the loading row
-    outputTable.innerHTML = ""; 
+    // Remove the loading row first
+    loadingRow.remove();
 
     // Populate the table with each promise result
     results.forEach(result => {
@@ -37,7 +37,4 @@ Promise.all(promises).then((results) => {
     const totalRow = document.createElement("tr");
     totalRow.innerHTML = `<td>Total</td><td>${totalTime} seconds</td>`;
     outputTable.appendChild(totalRow);
-
-    // Remove loading row if it still exists
-    loadingRow.remove(); // Ensure the loading row is removed after completion
 });
