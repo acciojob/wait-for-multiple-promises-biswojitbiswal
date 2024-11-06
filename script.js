@@ -15,7 +15,7 @@ function createRandomPromise(index) {
     const totalTime = (performance.now() - start) / 1000;
 
     // Remove loading row
-    document.getElementById('loadingRow').remove();
+    document.getElementById('loading').remove();
 
     // Populate the table with the results
     results.forEach((result) => {
