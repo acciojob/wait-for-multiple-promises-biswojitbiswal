@@ -22,8 +22,8 @@ const promises = [
 
 // Use Promise.all to wait for all promises to resolve
 Promise.all(promises).then((results) => {
-    // Remove the loading row first
-    loadingRow.remove();
+    // Remove loading row if it exists
+    if (loadingRow) loadingRow.remove();
 
     // Populate the table with each promise result
     results.forEach(result => {
